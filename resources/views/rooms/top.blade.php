@@ -1,20 +1,26 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Blog</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
+
+
+<x-app-layout>
+    <x-slot name="header">
+        　  <h1></h1>
+    </x-slot>
     <body>
-        <h1>アプリ名</h1>
         <div class='body'>
             <div class='introduction'>
-                <h2>ブレインストーミングとは？</h2>
             </div>
             <div class='start'>
-                <a href='/rooms/certification'>始める</a>
+                <a href='create'>ファシリテーターになる</a>
+                <br>
+                <form action="/enter" method="POST">
+                    @csrf
+                    <div class="title">
+                        <h2>キーを入力して参加する</h2>
+                        <input type="text" name="key" placeholder="キー"/>
+                        <p class="title__error" style="color:red">{{ $errors->first('key') }}</p>
+                    </div>
+                    <input type="submit" value="参加する"/>
+                </form>
             </div>
         </div>
     </body>
-</html>
+</x-app-layout>
